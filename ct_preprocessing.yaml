@@ -1,0 +1,28 @@
+
+# CT-Specific Preprocessing
+ct_processing:
+  hounsfield_conversion: true
+  windows:
+    lung: [-1000, 400]
+    mediastinal: [50, 350]
+    bone: [400, 1800]
+  
+  normalization:
+    method: tissue_specific
+    focus: lung_parenchyma
+  
+  enhancement:
+    clahe: true
+    clip_limit: 2.0
+    grid_size: [8, 8]
+  
+  segmentation:
+    method: unet
+    remove_background: true
+    lung_roi_only: false
+  
+  output:
+    size: [224, 224]
+    channels: 3
+    dtype: float32
+    range: [0, 1]
